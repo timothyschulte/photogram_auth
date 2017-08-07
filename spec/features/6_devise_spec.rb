@@ -5,13 +5,13 @@ do_not_show_tests_in_browser = false
 
 feature "Devise:", js: do_not_show_tests_in_browser do
 
-  scenario "sign-up form has username field", points: 1, hint: "This test requires the label for the field to be 'Username', and may not work if the corresponding label tag does not have a 'for' attribute." do
+  scenario "sign-up form has username field", points: 1, hint: h("label_for_input") do
     visit "/users/sign_up"
 
     expect(page).to have_selector("label", text: "Username")
   end
 
-  scenario "sign-up form username field works", points: 2, hint: "This test requires the label for the field to be 'Username', and may not work if the corresponding label tag does not have a 'for' attribute." do
+  scenario "sign-up form username field works", points: 2, hint: h("label_for_input") do
     sample_email = "alice@example.com"
     sample_password = "alicepassword"
     sample_username = "alice"
@@ -28,7 +28,7 @@ feature "Devise:", js: do_not_show_tests_in_browser do
     }
   end
 
-  scenario "edit form has username field", points: 1, hint: "This test requires the label for the field to be 'Username', and may not work if the corresponding label tag does not have a 'for' attribute." do
+  scenario "edit form has username field", points: 1, hint: h("label_for_input") do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
 
@@ -37,7 +37,7 @@ feature "Devise:", js: do_not_show_tests_in_browser do
     expect(page).to have_selector("label", text: "Username")
   end
 
-  scenario "edit form username field works", points: 2, hint: "This test requires the label for the field to be 'Username', and may not work if the corresponding label tag does not have a 'for' attribute." do
+  scenario "edit form username field works", points: 2, hint: h("label_for_input") do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     new_username = "User-#{Time.now.to_f}"
@@ -52,7 +52,7 @@ feature "Devise:", js: do_not_show_tests_in_browser do
     }
   end
 
-  scenario "sign-in form modified with Bootstrap class", points: 1, hint: "The test only looks to see whether the class 'form-group' is present." do
+  scenario "sign-in form modified with Bootstrap class", points: 1, hint: h("class_must_match") do
     visit "/"
 
     expect(page).to have_selector(".form-group")

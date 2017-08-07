@@ -41,7 +41,7 @@ feature "Photos:", js: do_not_show_tests_in_browser do
     expect(page).not_to have_selector("h1", text: "Photos")
   end
 
-  scenario "/photos displays per-photo username, photo, and time elapsed", points: 1, hint: "Time elapsed ends in 'ago' (e.g., '5 months ago')." do
+  scenario "/photos displays per-photo username, photo, and time elapsed", points: 1, hint: h("time_in_words") do
     user_1 = FactoryGirl.create(:user, :username => "user_1", :email => "1@m.com")
     user_2 = FactoryGirl.create(:user, :username => "user_2", :email => "2@m.com")
     user_3 = FactoryGirl.create(:user, :username => "Three", :email => "three@m.com")
@@ -88,7 +88,7 @@ feature "Photos:", js: do_not_show_tests_in_browser do
     expect(page).to have_content(comment_2.user.username)
   end
 
-  scenario "/photos shows Font Awesome heart icons to add/delete likes", points: 1, hint: "Font Awesome icon classes: fa-heart and fa-heart-o." do
+  scenario "/photos shows Font Awesome heart icons to add/delete likes", points: 1, hint: h("font_awesome_css_must_match") do
     user_1 = FactoryGirl.create(:user, :username => "1", :email => "1@m.com")
     user_2 = FactoryGirl.create(:user, :username => "2", :email => "2@m.com")
     photo_1 = FactoryGirl.create(:photo, :user_id => user_2.id)
@@ -131,7 +131,7 @@ feature "Photos:", js: show_tests_in_browser do
     expect(page).to have_current_path("/photos")
   end
 
-  scenario "quick-add a comment sets the author correctly", points: 1, hint: "Test assumes that each row in /comments lists either the author's ID or username." do
+  scenario "quick-add a comment sets the author correctly", points: 1, hint: h("display_id_or_username")  do
     user_1 = FactoryGirl.create(:user, :username => "1", :email => "1@m.com")
     user_2 = FactoryGirl.create(:user, :username => "user_2", :email => "two@m.com", :id => "#{Time.now.to_i}")
     photo = FactoryGirl.create(:photo, :user_id => user_1.id)

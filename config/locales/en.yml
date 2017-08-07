@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  hints:
+    time_in_words: "Time elapsed ends in 'ago' (e.g., '5 months ago')."
+    font_awesome_css_must_match: "Font Awesome icon classes: fa-heart and fa-heart-o."
+    display_id_or_username: "Test assumes that each row in /comments lists either the author's ID or username."
+    label_for_input: "This test requires the label for the field to be 'Username', and may not work if the corresponding label tag does not have a 'for' attribute."
+    class_must_match: "The test only looks to see whether the class 'form-group' is present."

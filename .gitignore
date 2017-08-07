@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 /.firstdraft_student.yml
+
+# Ignore dotenv files
+/.env*

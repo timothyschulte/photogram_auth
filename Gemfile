@@ -1,7 +1,4 @@
-source 'http://rubygems.org'
-
-gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
-gem "devise"
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'
@@ -28,26 +25,50 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem "listen"
-  gem "wdm" if Gem.win_platform?
-  gem "pry-rails"
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platform: :mri
 end
 
-gem 'rspec-rails', group: [:test, :development]
-gem 'capybara', group: [:test, :development]
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '~> 3.0.5'
+end
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'factory_girl_rails', group: [:test, :development]
-gem 'faker', group: [:test, :development]
-gem 'shoulda', group: [:test, :development]
-gem 'selenium-webdriver', group: [:test, :development]
-gem 'database_cleaner', group: [:test, :development]
+
+group :development, :test do
+  gem 'faker'
+  gem 'dotenv-rails'
+  gem 'pry-rails'
+  gem 'grade_runner', github: 'firstdraft/grade_runner'
+  gem 'web_git', github: 'firstdraft/web_git'
+  gem 'database_cleaner'
+end
+
+group :development do
+  gem 'annotate'
+  gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'firstdraft_generators', github: 'firstdraft/firstdraft_generators'
+  gem 'letter_opener'
+  gem 'meta_request'
+  gem 'wdm', platforms: [:mingw, :mswin, :x64_mingw]
+end
+
+group :test do
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'webmock'
+end
+
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'bootstrap-sass'
+gem 'devise', github: 'plataformatec/devise'
+gem 'font-awesome-sass', '~> 4.7.0'
