@@ -1,20 +1,23 @@
 namespace :dev do
   desc "Hydrate the database with some dummy data to make it easier to develop"
   task :prime do
-
     usernames = ["alice", "bob", "carol"]
 
+    users = []
+
     usernames.each do |username|
-      user = User.create
+      user = User.find_or_initialize_by(email: "#{username}@example.com")
+
       user.username = username
-      user.email = "#{username}@example.com"
       user.password = "password"
       user.save
+
+      users << user
     end
 
     puts "There are now #{User.count} users in the database."
 
-    photo_infos = [
+    photo_info = [
       {
         :image => "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Lake_Bondhus_Norway_2862.jpg/1280px-Lake_Bondhus_Norway_2862.jpg",
         :caption => "Lake Bondhus"
@@ -45,27 +48,24 @@ namespace :dev do
       }
     ]
 
-    users = User.all
+    photos = []
 
     users.each do |user|
-      photo_infos.each do |photo_info|
-        photo = Photo.new(photo_info)
-        photo.user_id = user.id
-        photo.save
+      photo_info.each do |photo_hash|
+        photos << user.photos.find_or_create_by(photo_hash)
       end
     end
 
     puts "There are now #{Photo.count} photos in the database."
 
-    photos = Photo.all
-
     photos.each do |photo|
-      rand(6).times do
-        comment = Comment.new
-        comment.photo_id = photo.id
-        comment.user_id = users.sample.id
-        comment.body = Faker::Hacker.say_something_smart
-        comment.save
+      if photo.comments.count < 1
+        rand(6).times do
+          comment = photo.comments.build
+          comment.user = users.sample
+          comment.body = Faker::Hacker.say_something_smart
+          comment.save
+        end
       end
     end
 
@@ -73,15 +73,13 @@ namespace :dev do
 
     photos.each do |photo|
       users.sample(rand(users.count)).each do |user|
-        like = Like.new
-        like.photo_id = photo.id
-        like.user_id = user.id
+        like = photo.likes.build
+        like.user = user
         like.save
       end
     end
 
     puts "There are now #{Like.count} likes in the database."
-
 
   end
 end
