@@ -2,11 +2,11 @@
 
 In this project, we'll practice tailoring the experience for users by allowing them to sign in so that we know who they are. We'll use the Devise gem to make authentication a snap.
 
-We'll be building a simple clone of [Instagram](https://www.instagram.com/).
+We'll be building a simple clone of Instagram.
 
 ### [Here is your target for the required parts of the assignment](https://photogram-auth-target.herokuapp.com/) (associations, authentication).
 
-Later, optionally, you will add file uploading and  social networking.
+Later, optionally, you will add image uploading and social networking.
 
 ## Domain Model
 
@@ -85,10 +85,10 @@ Below I suggest a plan of attack. Try to imagine, as you go through it, how each
 
 ## Steps
 
- 1. Fork and clone as usual.
+ 1. Set up a Cloud9 workspace as usual.
+ 1. `bin/setup`
  1. I've already added [starter_generators](https://guides.firstdraft.com/starter_generators.html) and [Devise](https://guides.firstdraft.com/authentication-and-authorization-with-devise.html) to the Gemfile. You might want to pull up those cheatsheets and have them handy.
- 1. `bundle install`
- 1. `rails grade` as you go along to see how you are doing.
+ 1. Use the usual Continuous Integration workflow.
  1. Generate the User table [with Devise](https://guides.firstdraft.com/authentication-and-authorization-with-devise.html#generate-a-new-model-with-devise):
 
     ```bash
@@ -114,7 +114,7 @@ Below I suggest a plan of attack. Try to imagine, as you go through it, how each
     root "photos#index"
     ```
 
- 1. You can finally `rails server` and navigate to [http://localhost:3000](http://localhost:3000) to see your work so far. If you haven't `rails db:migrate`d yet, it will ask you to now.
+ 1. You can finally Run Project and navigate to the application to see your work so far. If you haven't `rails db:migrate`d yet, it will ask you to now.
  1. Generate [a better application layout](https://guides.firstdraft.com/starter_generators.html#application-layout), including Bootstrap:
 
     ```bash
@@ -124,7 +124,7 @@ Below I suggest a plan of attack. Try to imagine, as you go through it, how each
  1. I've included some random starter data for you to use while developing:
 
     ```bash
-    rails db:seed
+    rails dev:prime
     ```
 
     Now click around the app and see what we've got. (If you're curious, I used the [faker gem](https://github.com/stympy/faker) to create the silly random seed comments. It's very useful for quickly generating random names, addresses, etc.)
@@ -137,7 +137,7 @@ Below I suggest a plan of attack. Try to imagine, as you go through it, how each
 
     Now try and navigate around the app. It should demand that you sign in before allowing you to visit any page.
 
- 1. Sign in with one of the seeded users; you can use `alice@example.com`, `bob@example.com`, or `carol@example.com`. All of the passwords are `12341234`.
+ 1. Sign in with one of the seeded users; you can use `alice@example.com`, `bob@example.com`, or `carol@example.com`. All of the passwords are `password`.
 
  1. Fix the dummy edit profile and sign-out links in the navbar.
     - If there is currently a signed-in user,
@@ -147,11 +147,11 @@ Below I suggest a plan of attack. Try to imagine, as you go through it, how each
 
  1. On the new photo form, the user should not have to provide their ID number. Fix it using Devise's `current_user` helper method to prepopulate that input.
 
- 1. Create an RCAV: When I visit [http://localhost:3000/users](http://localhost:3000/users), I should see an index of all users. This RCAV does not exist right now, since we used Devise to generate the User resource rather than starter_generators. Devise only builds the RCAVs required for sign-up/sign-in/sign-out/etc; it doesn't build the standard Golden Seven. But that's okay, because we can easily add the ones that we want ourselves (if any). Once done, add a link to the navbar.
+ 1. Create an RCAV: When I visit `/users`, I should see an index of all users. This RCAV does not exist right now, since we used Devise to generate the User resource rather than starter_generators. Devise only builds the RCAVs required for sign-up/sign-in/sign-out/etc; it doesn't build the standard Golden Seven. But that's okay, because we can easily add the ones that we want ourselves (if any). Once done, add a link to the navbar.
 
- 1. Create an RCAV: When I visit [http://localhost:3000/users/1](http://localhost:3000/users/1), I should see the details of user #1 along with all of his or her photos. Once done, add a link to the navbar that leads to the current user's show page. (This may lead to a problem when no one is signed in -- how can you fix it? Also, be careful where you add this route in `routes.rb` -- it needs to be below the line `devise_for :users`, otherwise it will conflict with `/users/sign_in` and `/users/sign_up`.)
+ 1. Create an RCAV: When I visit `/users/1`), I should see the details of user #1 along with all of his or her photos. Once done, add a link to the navbar that leads to the current user's show page. (This may lead to a problem when no one is signed in -- how can you fix it? Also, be careful where you add this route in `routes.rb` -- it needs to be below the line `devise_for :users`, otherwise it will conflict with `/users/sign_in` and `/users/sign_up`.)
 
- 1. Create an RCAV: When I visit [http://localhost:3000/my_likes](http://localhost:3000/my_likes), I should see only the photos that I have liked.  Once done, add a link to the navbar.
+ 1. Create an RCAV: When I visit `/my_likes`, I should see only the photos that I have liked.  Once done, add a link to the navbar.
 
  1. On the photo show and index pages, I should only see the "Edit" and "Delete" buttons if it is my own photo.
 
@@ -169,7 +169,5 @@ Below I suggest a plan of attack. Try to imagine, as you go through it, how each
  1. Optional: Follow [the Tweeter example project](https://github.com/firstdraft/tweeter) to enable followers/timeline. You'll find an accompanying video titled "Social Network" under Pages in Canvas.
 
 [Here is a target for the optional parts of the assignment](https://photogram-final-target.herokuapp.com/) (file uploads, social network).
-
-Submit as usual by syncing to your fork and `rails grade`.
 
 ## The skills covered in this assignment are relevant to 99% of your project ideas. Ask lots of questions and book office hours! Good luck!
