@@ -88,7 +88,7 @@ Below I suggest a plan of attack. Try to imagine, as you go through it, how each
  1. Set up a Cloud9 workspace as usual.
  1. `bin/setup`
  1. I've already added [starter_generators](https://guides.firstdraft.com/starter_generators.html) and [Devise](https://guides.firstdraft.com/authentication-and-authorization-with-devise.html) to the Gemfile. You might want to pull up those cheatsheets and have them handy.
- 1. Use the usual Continuous Integration workflow.
+ 1. Use the usual Continuous Integration workflow. You can go to `/rails/git` in Chrome to access the visual Git interface.
  1. Generate the User table [with Devise](https://guides.firstdraft.com/authentication-and-authorization-with-devise.html#generate-a-new-model-with-devise):
 
     ```bash
