@@ -106,7 +106,7 @@ Below I suggest a plan of attack. Try to imagine, as you go through it, how each
     rails generate starter:resource comment photo_id:integer body:text user_id:integer
     ```
 
- 1. Now that you have generated your model files, add all of the associations and validations listed above immediately.
+ 1. Now that you have generated your model files, **add all of the associations and validations listed above immediately**.
  1. Set the root URL to the photos index page:
 
     ```ruby
