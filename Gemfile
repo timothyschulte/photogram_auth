@@ -69,6 +69,5 @@ group :test do
 end
 
 gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
-gem 'bootstrap-sass'
 gem 'devise'
 gem 'font-awesome-sass', '~> 4.7.0'
