@@ -68,7 +68,7 @@ group :test do
   gem 'webmock'
 end
 
-gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
 gem 'bootstrap-sass'
-gem 'devise', github: 'plataformatec/devise'
+gem 'devise'
 gem 'font-awesome-sass', '~> 4.7.0'
